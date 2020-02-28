@@ -1,11 +1,10 @@
-LICENSE
-PredictHaplo-Paired is free software.  The text file COPYING, located in this directory, contains copyright and licensing details. The software package contains a copy of the SCYTHE C++ library (http://scythe.wustl.edu/) which is also published under the GPL.
-
-GENERAL
+# PredictHaplo
 This software aims at reconstructing haplotypes from next-generation sequencing data. A typical application example is to reconstruct HIV-1 haplotypes present in a blood sample from a patient based on paired-end Illumina reads. 
 
+## LICENSE
+PredictHaplo-Paired is free software.  The text file COPYING, located in this directory, contains copyright and licensing details. The software package contains a copy of the SCYTHE C++ library (http://scythe.wustl.edu/) which is also published under the GPL.
 
-INSTALLATION
+## INSTALLATION
 PredictHaplo has been tested with gcc 4.6.3 under Ubuntu Linux. 
 It should compile on similar platforms with gcc version 4.4.7 or greater.
 
@@ -35,7 +34,7 @@ It should compile on similar platforms with gcc version 4.4.7 or greater.
 7) Done, hopefully :-)
 
 
-DOCUMENTATION
+## DOCUMENTATION
 Here are some basic informations:
 
 The program is invoked with a configuration file as "PredictHaplo-Paired <config_file>", see the hopefully self-contained example file "config_5V". The syntax of this config file is quite simple: lines starting with "%" are treated as comments. 
@@ -52,7 +51,13 @@ The next line is a flag indicating if a local analysis should be performed (must
 
 Several additional parameters can be specified: start + stop position of the reconstruction (with respect to the provided reference genome), a quality threshold parameter that selects reads with good alignments to the reference genome, the minimum read length, the maximum fraction of gaps within a read (relative to alignment length), the minimum ratio of alignment score to alignment length, the prior parameter of the multinomial probability tables of the nucleotides at every position, the "min_overlap_factor" (reads must have an overlap with the local reconstruction window of at least this factor times the window size), the "local_window_size_factor" (size of  local reconstruction window relative to average read length), the maximum number of clusters in the truncated Dirichlet process, and the number of MCMC iterations. The last line is an indicator variable for handling deletions in the reads (0 means ignoring deletions; this is useful in regions where one does not expect "true" deletions).
 
-DEMO
-The package includes the Illumina reads from the "5-virus-mix" dataset that can be found in the supplement of [Di Giallonardo, Töpfer et al. Full-length haplotype reconstruction to infer the structure of heterogeneous virus populations. NAR, 2014 10.1093/nar/gku537], aligned to the hxb2 reference "5V_ref_seq.fasta", and the "true" haplotypes aligned to the same reference: "5VirusMixReference.fasta".  With the config file provided, you should be able to successfully detect the 5 haplotypes in the gag-pol region.  During execution, progress can be monitored by looking at the created html-files (one per local or "global" window). These html files contain the reference sequence (move with the mouse pointer over a letter to see the position). If true haplotypes are available, these are shown as well, and also the "true" mutations are highlighted in the reference sequence. Then follow the reconstructed haplotypes (in the current analysis window), together with some information about their quality: the "Overlaps" section, where an entry "10:20" means that in every position in the window there are at least 10 reads assigned to one haplotype which have an overlap with this position of 20 (only positions that pass the entropy criterion are counted), and that there is one (or more) position where there are only 10 such reads. Any number x in "10:x" smaller then 15 might indicate that there are problems with this haplotype. If true haplotypes are available, the best matching ones are shown, and the number of errors ("cost"), and the position of these errors (if there are any).
+### DEMO
+**NOTE**: This package no longer includes the dataset. Instead, you have to obtain it from  [here](https://github.com/cbg-ethz/5-virus-mix). Please note, that the individual filenames may have changed from the ones used in the following description.
+
+The demo can be run with the Illumina reads from the "5-virus-mix" dataset that can be found in the supplement of [Di Giallonardo, TÃ¶pfer et al. Full-length haplotype reconstruction to infer the structure of heterogeneous virus populations. NAR, 2014 10.1093/nar/gku537], aligned to the hxb2 reference "5V_ref_seq.fasta", and the "true" haplotypes aligned to the same reference: "5VirusMixReference.fasta".  
+
+With the config file provided, you should be able to successfully detect the 5 haplotypes in the gag-pol region.  During execution, progress can be monitored by looking at the created html-files (one per local or "global" window). These html files contain the reference sequence (move with the mouse pointer over a letter to see the position). If true haplotypes are available, these are shown as well, and also the "true" mutations are highlighted in the reference sequence. Then follow the reconstructed haplotypes (in the current analysis window), together with some information about their quality: the "Overlaps" section, where an entry "10:20" means that in every position in the window there are at least 10 reads assigned to one haplotype which have an overlap with this position of 20 (only positions that pass the entropy criterion are counted), and that there is one (or more) position where there are only 10 such reads. Any number x in "10:x" smaller then 15 might indicate that there are problems with this haplotype. If true haplotypes are available, the best matching ones are shown, and the number of errors ("cost"), and the position of these errors (if there are any).
 The files for the "local" windows additionally contain all the aligned reads ordered by haplotype assignment. The inferred haplotypes are also output in fasta format (filenames have the following structure: prefix + local/global + window_start + window_stop + .fas).
 
+## Code Maintenance & Support
+This code is no longer maintained. The reconstruction may fail for low coverage segments, but we will unfortunately not be able to provide support.

@@ -61,3 +61,6 @@ The files for the "local" windows additionally contain all the aligned reads ord
 
 ## Code Maintenance & Support
 This code is no longer maintained. The reconstruction may fail for low coverage segments, but we will unfortunately not be able to provide support.
+
+# References
+[Prabhakaran, Sandhya, et al. "HIV haplotype inference using a propagating dirichlet process mixture model." IEEE/ACM transactions on computational biology and bioinformatics 11.1 (2013): 182-191.](https://ieeexplore.ieee.org/abstract/document/6661314)

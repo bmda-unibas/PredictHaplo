@@ -4,6 +4,9 @@ This software aims at reconstructing haplotypes from next-generation sequencing 
 ## LICENSE
 PredictHaplo-Paired is free software.  The text file COPYING, located in this directory, contains copyright and licensing details. The software package contains a copy of the SCYTHE C++ library (http://scythe.wustl.edu/) which is also published under the GPL.
 
+## Author
+Volker Roth
+
 ## INSTALLATION
 PredictHaplo has been tested with gcc 4.6.3 under Ubuntu Linux. 
 It should compile on similar platforms with gcc version 4.4.7 or greater.
